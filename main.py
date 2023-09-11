@@ -52,6 +52,7 @@ while hasFrame:
         landmark, flag = landmarks[i], flags[i]
         if flag > 0.5:
             draw_landmarks(frame, landmark, POSE_CONNECTIONS, size=2)
+            print(f"Frame {frame_ct}: {landmark}")
 
     cv2.imshow(WINDOW, frame[:, :, ::-1])
     # cv2.imwrite('sample/%04d.jpg'%frame_ct, frame[:,:,::-1])
