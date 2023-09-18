@@ -1,8 +1,9 @@
+node_modules
+.cache
+dist
+
 # excel files
 *.xlsx
-
-# data
-data/
 
 # OS
 .DS_Store
@@ -23,11 +24,3 @@ data/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-
-# python venv
-venv*/
-
-# node
-node_modules
-.cache
-dist
