@@ -1,0 +1,7 @@
+# image file
+*.jpg
+
+# model
+*.h5
+*.pth
+*.task
