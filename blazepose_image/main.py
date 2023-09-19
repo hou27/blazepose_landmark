@@ -4,10 +4,10 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
-from draw_landmarks_on_image import draw_landmarks_on_image
+# from draw_landmarks_on_image import draw_landmarks_on_image
 
 # STEP 2: Create an PoseLandmarker object.
-base_options = python.BaseOptions(model_asset_path="pose_landmarker.task")
+base_options = python.BaseOptions(model_asset_path="./model/pose_landmarker.task")
 options = vision.PoseLandmarkerOptions(
     base_options=base_options, output_segmentation_masks=True
 )
@@ -22,6 +22,10 @@ image = mp.Image.create_from_file(image3)
 # STEP 4: Detect pose landmarks from the input image.
 detection_result = detector.detect(image)
 
+
+"""
+step 5부터 주석 처리 및 landmark 출력 코드로 변경
+
 # STEP 5: Process the detection result. In this case, visualize it.
 annotated_image = draw_landmarks_on_image(image.numpy_view(), detection_result)
 # cv2_imshow(cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR))
@@ -32,3 +36,6 @@ cv2.waitKey(0)
 
 # 모든 창을 닫습니다.
 cv2.destroyAllWindows()
+"""
+
+print(detection_result.pose_landmarks)
