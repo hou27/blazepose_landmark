@@ -20,6 +20,16 @@ landmarks_data = []
 
 # load img files
 image_directory = "./image/561-1-3-27-Z37_C"
+image_directory2 = "./image/561-1-3-27-Z54_C"
+image_directory3 = "./image/561-1-3-27-Z56_C"
+image_directory4 = "./image/561-1-3-27-Z115_C"
+image_directory5 = "./image/561-1-3-27-Z59_C"
+image_directory6 = "./image/561-1-3-27-Z62_C"
+image_directory7 = "./image/561-1-3-27-Z61_C"
+image_directory8 = "./image/561-1-3-27-Z84_C"
+image_directory9 = "./image/561-1-3-27-Z3_C"
+image_directory10 = "./image/561-1-3-27-Z98_C"
+image_directory = image_directory10
 image_files = [f for f in os.listdir(image_directory) if f.endswith((".jpg", ".jpeg"))]
 
 # detect pose landmarks from the input image and save landmarks to npy file
@@ -37,7 +47,8 @@ for image_file in image_files:
     ]
 
     # save landmarks to npy file
-    np.save(f"./npy/{image_file}.npy", np.array(landmarks))
+    # np.save(f"./npy/train/{image_file}.npy", np.array(landmarks))
+    np.save(f"./npy/test/{image_file}.npy", np.array(landmarks))  # add to test folder
 
 # image1 = "038-1-1-21-Z17_D-0000004.jpg"
 # image2 = "506-1-2-23-Z57_A-0000009.jpg"
