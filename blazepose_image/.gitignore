@@ -5,3 +5,6 @@
 *.h5
 *.pth
 *.task
+
+# npy file
+*.npy
