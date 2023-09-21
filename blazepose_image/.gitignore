@@ -8,3 +8,10 @@
 
 # npy file
 *.npy
+
+# data file
+*.csv
+*.json
+*.xml
+*.txt
+*.excel
