@@ -21,6 +21,8 @@ import "@tensorflow/tfjs-backend-webgpu";
 import * as mpPose from "@mediapipe/pose";
 import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
 import * as tf from "@tensorflow/tfjs-core";
+import * as path from "path";
+import { spawn } from "child_process";
 
 tfjsWasm.setWasmPaths(
   `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@${tfjsWasm.version_wasm}/dist/`
@@ -199,6 +201,11 @@ async function renderResult() {
         });
 
         console.log(poses);
+        const dirPath = path.join(__dirname, "/python/main.py");
+        const process = spawn("python3", [dirPath, poses]);
+        process.stdout.on("data", (data) => {
+          console.log(data.toString());
+        });
       }
     } catch (error) {
       detector.dispose();
