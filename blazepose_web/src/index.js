@@ -38,6 +38,8 @@ import { STATE } from "./params";
 import { setupStats } from "./stats_panel";
 import { setBackendAndEnvFlags } from "./util";
 
+const dirPath = path.join(__dirname, "/python/main.py");
+
 let detector, camera, stats;
 let startInferenceTime,
   numInferences = 0;
@@ -200,9 +202,15 @@ async function renderResult() {
           flipHorizontal: false,
         });
 
-        console.log(poses);
-        const dirPath = path.join(__dirname, "/python/main.py");
-        const process = spawn("python3", [dirPath, poses]);
+        /**
+         * child process를 생성하여 python 파일을 실행, 실시간 데이터로부터 결과를 도출
+         */
+        console.log(spawn);
+        console.log(dirPath, JSON.stringify(poses[0].keypoints3D));
+        const process = spawn("python3", [
+          dirPath,
+          JSON.stringify(poses[0].keypoints3D),
+        ]);
         process.stdout.on("data", (data) => {
           console.log(data.toString());
         });
