@@ -16,7 +16,7 @@ options = vision.PoseLandmarkerOptions(
 detector = vision.PoseLandmarker.create_from_options(options)
 
 image_directory = "./image/561-1-3-27-Z115_C"
-image_file = "561-1-3-27-Z115_C-0000001.jpg"
+image_file = "561-1-3-27-Z115_C-0000032.jpg"
 image_path = os.path.join(image_directory, image_file)
 image = mp.Image.create_from_file(image_path)
 
