@@ -29,17 +29,19 @@ image_directory7 = "./image/561-1-3-27-Z61_C"
 image_directory8 = "./image/561-1-3-27-Z84_C"
 image_directory9 = "./image/561-1-3-27-Z3_C"
 image_directory10 = "./image/561-1-3-27-Z98_C"
+image_directory11 = "./image/561-1-3-27-Z57_C"
 image_directorys = [
-    image_directory1,
-    image_directory2,
-    image_directory3,
-    image_directory4,
-    image_directory5,
-    image_directory6,
-    image_directory7,
-    image_directory8,
-    image_directory9,
-    image_directory10,
+    # image_directory1,
+    # image_directory2,
+    # image_directory3,
+    # image_directory4,
+    # image_directory5,
+    # image_directory6,
+    # image_directory7,
+    # image_directory8,
+    # image_directory9,
+    # image_directory10,
+    image_directory11
 ]
 # image_directory = image_directory10
 # image_files = [f for f in os.listdir(image_directory) if f.endswith((".jpg", ".jpeg"))]
@@ -64,8 +66,11 @@ for image_directory in image_directorys:
 
         # save landmarks to npy file
         # np.save(f"./npy/train/{image_file}.npy", np.array(landmarks))
+        # np.save(
+        #     f"./npy/train_entire/{image_file}.npy", np.array(landmarks)
+        # )  # add to train_entire folder
         np.save(
-            f"./npy/train_entire/{image_file}.npy", np.array(landmarks)
+            f"./npy/test/{image_file}.npy", np.array(landmarks)
         )  # add to test folder
 
 # image1 = "038-1-1-21-Z17_D-0000004.jpg"
