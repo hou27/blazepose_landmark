@@ -19,7 +19,7 @@ detector = vision.PoseLandmarker.create_from_options(options)
 landmarks_data = []
 
 # load img files
-image_directory = "./image/561-1-3-27-Z37_C"
+image_directory1 = "./image/561-1-3-27-Z37_C"
 image_directory2 = "./image/561-1-3-27-Z54_C"
 image_directory3 = "./image/561-1-3-27-Z56_C"
 image_directory4 = "./image/561-1-3-27-Z115_C"
@@ -29,26 +29,44 @@ image_directory7 = "./image/561-1-3-27-Z61_C"
 image_directory8 = "./image/561-1-3-27-Z84_C"
 image_directory9 = "./image/561-1-3-27-Z3_C"
 image_directory10 = "./image/561-1-3-27-Z98_C"
-image_directory = image_directory10
-image_files = [f for f in os.listdir(image_directory) if f.endswith((".jpg", ".jpeg"))]
+image_directorys = [
+    image_directory1,
+    image_directory2,
+    image_directory3,
+    image_directory4,
+    image_directory5,
+    image_directory6,
+    image_directory7,
+    image_directory8,
+    image_directory9,
+    image_directory10,
+]
+# image_directory = image_directory10
+# image_files = [f for f in os.listdir(image_directory) if f.endswith((".jpg", ".jpeg"))]
 
 # detect pose landmarks from the input image and save landmarks to npy file
-for image_file in image_files:
-    image_path = os.path.join(image_directory, image_file)
-    image = mp.Image.create_from_file(image_path)
-
-    # Detect pose landmarks from the input image.
-    detection_result = detector.detect(image)
-
-    # Process the detection result.
-    landmarks = [
-        (landmark.x, landmark.y, landmark.z)
-        for landmark in detection_result.pose_landmarks[0]
+for image_directory in image_directorys:
+    image_files = [
+        f for f in os.listdir(image_directory) if f.endswith((".jpg", ".jpeg"))
     ]
+    for image_file in image_files:
+        image_path = os.path.join(image_directory, image_file)
+        image = mp.Image.create_from_file(image_path)
 
-    # save landmarks to npy file
-    # np.save(f"./npy/train/{image_file}.npy", np.array(landmarks))
-    np.save(f"./npy/test/{image_file}.npy", np.array(landmarks))  # add to test folder
+        # Detect pose landmarks from the input image.
+        detection_result = detector.detect(image)
+
+        # Process the detection result.
+        landmarks = [
+            (landmark.x, landmark.y, landmark.z)
+            for landmark in detection_result.pose_landmarks[0]
+        ]
+
+        # save landmarks to npy file
+        # np.save(f"./npy/train/{image_file}.npy", np.array(landmarks))
+        np.save(
+            f"./npy/train_entire/{image_file}.npy", np.array(landmarks)
+        )  # add to test folder
 
 # image1 = "038-1-1-21-Z17_D-0000004.jpg"
 # image2 = "506-1-2-23-Z57_A-0000009.jpg"
