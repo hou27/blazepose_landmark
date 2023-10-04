@@ -1,4 +1,4 @@
-from blazepose_image.model.model import EnsembleModel
+from model import EnsembleModel
 
 
 class CountMachine:

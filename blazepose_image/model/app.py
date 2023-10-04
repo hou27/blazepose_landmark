@@ -1,4 +1,4 @@
-from blazepose_image.model.countMachine import CountMachine
+from countMachine import CountMachine
 
 path = "/Users/hou27/workspace/ml/blazepose_landmark/blazepose_image"
 
