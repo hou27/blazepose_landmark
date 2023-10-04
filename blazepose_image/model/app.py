@@ -1,3 +1,4 @@
+from squartCountMachine import SquartCountMachine
 from countMachine import CountMachine
 
 path = "/Users/hou27/workspace/ml/blazepose_landmark/blazepose_image"
@@ -240,3 +241,5 @@ data = [
 if __name__ == "__main__":
     counter = CountMachine()
     print(counter.count(data))
+    squart_counter = SquartCountMachine()
+    print(squart_counter.count(data))
