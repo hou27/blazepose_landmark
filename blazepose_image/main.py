@@ -30,6 +30,8 @@ image_directory8 = "./image/561-1-3-27-Z84_C"
 image_directory9 = "./image/561-1-3-27-Z3_C"
 image_directory10 = "./image/561-1-3-27-Z98_C"
 image_directory11 = "./image/561-1-3-27-Z57_C"
+image_directory12 = "./image/561-1-3-27-Z37_A"  # 정면 우측 대각
+image_directory13 = "./image/11-1_001-C09"  # 정면
 image_directorys = [
     # image_directory1,
     # image_directory2,
@@ -41,7 +43,9 @@ image_directorys = [
     # image_directory8,
     # image_directory9,
     # image_directory10,
-    image_directory11
+    # image_directory11,
+    # image_directory12,
+    image_directory13,
 ]
 # image_directory = image_directory10
 # image_files = [f for f in os.listdir(image_directory) if f.endswith((".jpg", ".jpeg"))]
