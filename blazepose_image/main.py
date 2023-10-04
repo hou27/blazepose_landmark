@@ -51,9 +51,10 @@ image_directorys = [
 # image_files = [f for f in os.listdir(image_directory) if f.endswith((".jpg", ".jpeg"))]
 
 root_image_directory = "./image/"
+root_test_image_directory = "./test_image/"
 squart_image_directorys = [
-    root_image_directory + f
-    for f in os.listdir(root_image_directory)
+    root_test_image_directory + f
+    for f in os.listdir(root_test_image_directory)
     if f.startswith(("313"))
 ]
 
@@ -83,9 +84,12 @@ for image_directory in squart_image_directorys:  # image_directorys:
         # np.save(
         #     f"./npy/test/{image_file}.npy", np.array(landmarks)
         # )  # add to test folder
+        # np.save(
+        #     f"./npy/squart_train/{image_file}.npy", np.array(landmarks)
+        # )  # add to squart_train folder
         np.save(
-            f"./npy/squart_train/{image_file}.npy", np.array(landmarks)
-        )  # add to squart_train folder
+            f"./npy/squart_test/{image_file}.npy", np.array(landmarks)
+        )  # add to squart_test folder
 
 # image1 = "038-1-1-21-Z17_D-0000004.jpg"
 # image2 = "506-1-2-23-Z57_A-0000009.jpg"
