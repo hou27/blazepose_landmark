@@ -53,13 +53,20 @@ image_directorys = [
 root_image_directory = "./image/"
 root_test_image_directory = "./test_image/"
 squart_image_directorys = [
-    root_test_image_directory + f
-    for f in os.listdir(root_test_image_directory)
+    root_image_directory + f
+    for f in os.listdir(root_image_directory)
     if f.startswith(("313"))
+]
+pushup_image_directorys = [
+    root_image_directory + f
+    for f in os.listdir(root_image_directory)
+    if f.startswith(("561"))
 ]
 
 # detect pose landmarks from the input image and save landmarks to npy file
-for image_directory in squart_image_directorys:  # image_directorys:
+for image_directory in (
+    squart_image_directorys + pushup_image_directorys
+):  # image_directorys:
     image_files = [
         f for f in os.listdir(image_directory) if f.endswith((".jpg", ".jpeg"))
     ]
@@ -87,9 +94,12 @@ for image_directory in squart_image_directorys:  # image_directorys:
         # np.save(
         #     f"./npy/squart_train/{image_file}.npy", np.array(landmarks)
         # )  # add to squart_train folder
+        # np.save(
+        #     f"./npy/squart_test/{image_file}.npy", np.array(landmarks)
+        # )  # add to squart_test folder
         np.save(
-            f"./npy/squart_test/{image_file}.npy", np.array(landmarks)
-        )  # add to squart_test folder
+            f"./npy/{image_file.split('-')[0]}/{image_file}.npy", np.array(landmarks)
+        )  # add to folder
 
 # image1 = "038-1-1-21-Z17_D-0000004.jpg"
 # image2 = "506-1-2-23-Z57_A-0000009.jpg"
