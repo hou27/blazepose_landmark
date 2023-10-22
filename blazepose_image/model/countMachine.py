@@ -9,6 +9,7 @@ class CountMachine:
         self.cnt = 0
         self.status0 = [1, 4]
         self.status1 = [0, 5]
+        self.status_abnormal = [2, 3]
 
     def count(self, data):
         self.prev_status = self.curr_status
