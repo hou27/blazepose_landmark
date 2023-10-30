@@ -22,7 +22,6 @@ import * as mpPose from "@mediapipe/pose";
 import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
 import * as tf from "@tensorflow/tfjs-core";
 import * as path from "path";
-import { spawn } from "child_process";
 
 tfjsWasm.setWasmPaths(
   `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@${tfjsWasm.version_wasm}/dist/`
@@ -48,6 +47,11 @@ let inferenceTimeSum = 0,
 let rafId;
 let renderer = null;
 let useGpuRenderer = false;
+
+/**
+ * websocket 연결
+ */
+const ws = new WebSocket(`ws://localhost:8000/count`);
 
 async function createDetector() {
   console.log(STATE);
@@ -203,17 +207,9 @@ async function renderResult() {
         });
 
         /**
-         * child process를 생성하여 python 파일을 실행, 실시간 데이터로부터 결과를 도출
+         * websocket을 사용하여 자세 status 체크
          */
-        console.log(spawn);
-        console.log(dirPath, JSON.stringify(poses[0].keypoints3D));
-        const process = spawn("python3", [
-          dirPath,
-          JSON.stringify(poses[0].keypoints3D),
-        ]);
-        process.stdout.on("data", (data) => {
-          console.log(data.toString());
-        });
+        ws.send(poses[0].keypoints3D);
       }
     } catch (error) {
       detector.dispose();
@@ -237,6 +233,15 @@ async function renderPrediction() {
   }
 
   rafId = requestAnimationFrame(renderPrediction);
+}
+
+/**
+ * websocket을 사용하여 계산된 count 출력
+ */
+async function renderCount() {
+  ws.onmessage = function (event) {
+    console.log("count : ", event.data);
+  };
 }
 
 async function app() {
@@ -268,6 +273,7 @@ async function app() {
   }
 
   renderPrediction();
+  renderCount();
 }
 
 app();
