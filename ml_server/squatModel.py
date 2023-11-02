@@ -8,7 +8,7 @@ from sklearn.ensemble import VotingClassifier
 path = "/Users/hou27/workspace/ml/blazepose_landmark/ml_server"
 
 
-class SquartEnsembleModel:
+class SquatEnsembleModel:
     def __init__(self):
         with open(path + "/model/squart_ensemble_model.pkl", "rb") as f:
             ensemble_model = pickle.load(f)

@@ -1,16 +1,10 @@
 from typing import Union
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import Depends, FastAPI, WebSocket, WebSocketDisconnect
 
-from connection_manager import ConnectionManager
-from squartCountMachine import SquartCountMachine
-from countMachine import CountMachine
+from service import SocketService
 
 app = FastAPI()
-
-manager = ConnectionManager()
-pushupsCountMachine = CountMachine()
-squartCountMachine = SquartCountMachine()
 
 
 @app.get("/")
@@ -19,24 +13,14 @@ def read_root():
 
 
 @app.websocket("/count_pushups")
-async def websocket_endpoint(websocket: WebSocket):
-    await manager.connect(websocket)
-    try:
-        while True:
-            data = await websocket.receive_text()
-            await manager.send_personal_message(f"Received:{data}", websocket)
-    except WebSocketDisconnect:
-        manager.disconnect(websocket)
-        await manager.send_personal_message("Bye!!!", websocket)
+async def websocket_endpoint_count_pushups(
+    websocket: WebSocket, socket_service: SocketService = Depends(SocketService)
+):
+    await socket_service.count_pushups(websocket)
 
 
 @app.websocket("/count_squat")
-async def websocket_endpoint(websocket: WebSocket):
-    await manager.connect(websocket)
-    try:
-        while True:
-            data = await websocket.receive_text()
-            await manager.send_personal_message(f"Received:{data}", websocket)
-    except WebSocketDisconnect:
-        manager.disconnect(websocket)
-        await manager.send_personal_message("Bye!!!", websocket)
+async def websocket_endpoint_count_squat(
+    websocket: WebSocket, socket_service: SocketService = Depends(SocketService)
+):
+    await socket_service.count_squat(websocket)

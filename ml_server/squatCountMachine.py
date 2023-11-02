@@ -1,9 +1,9 @@
-from squartModel import SquartEnsembleModel
+from ml_server.squatModel import SquatEnsembleModel
 
 
-class SquartCountMachine:
+class SquatCountMachine:
     def __init__(self):
-        self.model = SquartEnsembleModel()
+        self.model = SquatEnsembleModel()
         self.prev_status = None
         self.curr_status = None
         self.cnt = 0
