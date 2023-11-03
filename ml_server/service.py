@@ -13,8 +13,6 @@ class SocketService:
         while True:
             data = await websocket.receive_text()
             data = json.loads(data)
-            print(type(data))
-            print(data[0])
             curr_cnt = pushup_count_machine.count(data)
             print(curr_cnt)
             await websocket.send_text(str(curr_cnt))
