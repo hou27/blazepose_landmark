@@ -1,4 +1,4 @@
-from ml_server.squatModel import SquatEnsembleModel
+from squatModel import SquatEnsembleModel
 
 
 class SquatCountMachine:

@@ -1,30 +1,25 @@
-from fastapi import WebSocket, WebSocketDisconnect
+from fastapi import WebSocket
 
-from connection_manager import ConnectionManager
 from squatCountMachine import SquatCountMachine
 from countMachine import CountMachine
 
 
 class SocketService:
-    def __init__(self):
-        self.manager = ConnectionManager()
-
     async def count_pushups(self, websocket: WebSocket):
-        await self.manager.connect(websocket)
-        try:
-            while True:
-                data = await websocket.receive_text()
-                await self.manager.send_personal_message(f"Received:{data}", websocket)
-        except WebSocketDisconnect:
-            self.manager.disconnect(websocket)
-            await self.manager.send_personal_message("Bye!!!", websocket)
+        # await self.manager.connect(websocket)
+        pushup_count_machine = CountMachine()
+        await websocket.accept()
+        while True:
+            data = await websocket.receive_text()
+            print(data)
+            curr_cnt: int = pushup_count_machine.count(data)
+            await websocket.send_text(curr_cnt)
 
     async def count_squat(self, websocket: WebSocket):
-        await self.manager.connect(websocket)
-        try:
-            while True:
-                data = await websocket.receive_text()
-                await self.manager.send_personal_message(f"Received:{data}", websocket)
-        except WebSocketDisconnect:
-            self.manager.disconnect(websocket)
-            await self.manager.send_personal_message("Bye!!!", websocket)
+        # await self.manager.connect(websocket)
+        squat_count_machine = SquatCountMachine()
+        await websocket.accept()
+        while True:
+            data = await websocket.receive_text()
+            curr_cnt: int = squat_count_machine.count(data)
+            await websocket.send_text(curr_cnt)
