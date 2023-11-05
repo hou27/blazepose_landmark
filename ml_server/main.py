@@ -12,6 +12,15 @@ def read_root():
     return {"Hello": "hou27"}
 
 
+@app.websocket("/testws")
+async def test_websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    while True:
+        data = await websocket.receive_text()
+        print(data)
+        await websocket.send_text(data)
+
+
 @app.websocket("/count_pushups")
 async def websocket_endpoint_count_pushups(
     websocket: WebSocket, socket_service: SocketService = Depends(SocketService)
