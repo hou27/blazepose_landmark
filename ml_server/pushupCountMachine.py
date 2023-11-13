@@ -1,9 +1,9 @@
-from model import EnsembleModel
+from pushupmodel import PushupEnsembleModel
 
 
-class CountMachine:
+class PushupCountMachine:
     def __init__(self):
-        self.model = EnsembleModel()
+        self.model = PushupEnsembleModel()
         self.prev_status = None
         self.curr_status = None
         self.cnt = 0
