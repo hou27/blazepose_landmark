@@ -13,7 +13,10 @@ class CountMachine:
 
     def count(self, data):
         self.prev_status = self.curr_status
-        self.curr_status = self.model.predict(data)[0]
+        result = self.model.predict(data)
+        if result is None:
+            return self.cnt
+        self.curr_status = result[0]
 
         if self.curr_status in self.status0 and self.prev_status in self.status1:
             self.cnt += 1

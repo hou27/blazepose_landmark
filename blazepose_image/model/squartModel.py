@@ -19,12 +19,23 @@ class SquartEnsembleModel:
 
     def predict(self, keypoint_3d):
         preprocessed_data = self.__preprocess(keypoint_3d)
+        if preprocessed_data is None:
+            return None
         return self.model.predict(preprocessed_data)
 
     def __preprocess(self, keypoint_3d):
         if self.scaler is None:
             raise ValueError("Scaler not loaded.")
-        data = np.array([np.array([d["x"], d["y"], d["z"]]) for d in keypoint_3d])
+        data = np.array(
+            [np.array([d["x"], d["y"], d["z"], d["score"]]) for d in keypoint_3d]
+        )
+
+        # score 값이 0.001 이하인 좌표가 10개 이상이면 처리 종료
+        if len(data[data[:, 3] < 0.001]) >= 10:
+            return None
+
+        # data에서 score값 제거
+        data = data[:, :-1]
 
         # 엉덩이를 기준으로 좌표 재설정
         hip_coords = data[23]
