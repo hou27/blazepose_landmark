@@ -37,8 +37,6 @@ import { STATE } from "./params";
 import { setupStats } from "./stats_panel";
 import { setBackendAndEnvFlags } from "./util";
 
-const dirPath = path.join(__dirname, "/python/main.py");
-
 let detector, camera, stats;
 let startInferenceTime,
   numInferences = 0;
@@ -51,7 +49,8 @@ let useGpuRenderer = false;
 /**
  * websocket 연결
  */
-const ws = new WebSocket(`ws://localhost:8000/count_pushups`);
+const ws = new WebSocket(`ws://localhost:8080/count_pushups`);
+console.log(ws.readyState);
 
 async function createDetector() {
   console.log(STATE);
@@ -209,7 +208,10 @@ async function renderResult() {
         /**
          * websocket을 사용하여 자세 status 체크
          */
-        if (poses[0]) ws.send(JSON.stringify(poses[0].keypoints3D));
+        if (poses[0]) {
+          console.log(JSON.stringify(poses[0].keypoints3D));
+          ws.send(JSON.stringify(poses[0].keypoints3D));
+        }
       }
     } catch (error) {
       detector.dispose();
