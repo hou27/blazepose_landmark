@@ -15,10 +15,12 @@ def read_root():
 @app.websocket("/testws")
 async def test_websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
+    test_flag = 0
     while True:
         data = await websocket.receive_text()
         print(data)
-        await websocket.send_text(data)
+        await websocket.send_text(str(test_flag))
+        test_flag += 1
 
 
 @app.websocket("/count_pushups")
