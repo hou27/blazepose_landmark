@@ -49,7 +49,7 @@ let useGpuRenderer = false;
 /**
  * websocket 연결
  */
-const ws = new WebSocket(`ws://localhost:8080/count_pushups`);
+const ws = new WebSocket(`ws://localhost:8000/testws`);
 console.log(ws.readyState);
 
 async function createDetector() {
@@ -209,7 +209,7 @@ async function renderResult() {
          * websocket을 사용하여 자세 status 체크
          */
         if (poses[0]) {
-          console.log(JSON.stringify(poses[0].keypoints3D));
+          // console.log(JSON.stringify(poses[0].keypoints3D));
           ws.send(JSON.stringify(poses[0].keypoints3D));
         }
       }
