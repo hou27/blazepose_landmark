@@ -1,6 +1,4 @@
-from typing import Union
-
-from fastapi import Depends, FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import Depends, FastAPI, WebSocket
 
 from service import SocketService
 
