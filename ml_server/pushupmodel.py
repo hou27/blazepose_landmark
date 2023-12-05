@@ -2,14 +2,14 @@ import numpy as np
 
 from baseModel import BaseModel
 
-path = "/Users/hou27/workspace/ml/blazepose_landmark/ml_server"
+# path = "/Users/hou27/workspace/ml/blazepose_landmark/ml_server"
 
 
 class PushupEnsembleModel(BaseModel):
     def __init__(self):
         super().__init__(
-            path + "/model/pushup_ensemble_model.pkl",
-            path + "/scaler/pushup_scaler1020.pkl",
+            "./model/pushup_ensemble_model.pkl",
+            "./scaler/pushup_scaler1020.pkl",
         )
 
     def preprocess_base(self, keypoint_3d):
