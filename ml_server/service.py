@@ -22,4 +22,4 @@ class SocketService:
         while True:
             data = await websocket.receive_text()
             curr_cnt: int = squat_count_machine.count(data)
-            await websocket.send_text(curr_cnt)
+            await websocket.send_text(str(curr_cnt))
