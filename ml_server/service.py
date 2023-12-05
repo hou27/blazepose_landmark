@@ -21,5 +21,6 @@ class SocketService:
         await websocket.accept()
         while True:
             data = await websocket.receive_text()
-            curr_cnt: int = squat_count_machine.count(data)
+            data = json.loads(data)
+            curr_cnt = squat_count_machine.count(data)
             await websocket.send_text(str(curr_cnt))
