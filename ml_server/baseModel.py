@@ -43,7 +43,7 @@ class BaseModel:
 
         return data
 
-    def __calculate_angle(self, a, b, c):
+    def calculate_angle(self, a, b, c):
         ba = a - b
         bc = c - b
 
@@ -52,7 +52,7 @@ class BaseModel:
 
         return np.degrees(angle)
 
-    def __calculate_xy_angle(self, a, b, c):
+    def calculate_xy_angle(self, a, b, c):
         ba = [a[0] - b[0], a[1] - b[1]]
         bc = [c[0] - b[0], c[1] - b[1]]
 
