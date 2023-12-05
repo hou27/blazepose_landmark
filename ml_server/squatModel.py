@@ -8,8 +8,8 @@ path = "/Users/hou27/workspace/ml/blazepose_landmark/ml_server"
 class SquatEnsembleModel(BaseModel):
     def __init__(self):
         super().__init__(
-            path + "/model/squart_ensemble_model.pkl",
-            path + "/scaler/squart_scaler1004.pkl",
+            path + "/model/squat_ensemble_model.pkl",
+            path + "/scaler/squat_scaler1020.pkl",
         )
 
     def preprocess_base(self, keypoint_3d):

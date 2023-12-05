@@ -49,7 +49,7 @@ let useGpuRenderer = false;
 /**
  * websocket 연결
  */
-const ws = new WebSocket(`ws://localhost:8000/testws`);
+const ws = new WebSocket(`ws://52.79.234.2:8000/count_pushups`);
 console.log(ws.readyState);
 
 async function createDetector() {

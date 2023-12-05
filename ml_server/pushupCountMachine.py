@@ -1,4 +1,4 @@
-from pushupmodel import PushupEnsembleModel
+from pushupModel import PushupEnsembleModel
 
 
 class PushupCountMachine:
