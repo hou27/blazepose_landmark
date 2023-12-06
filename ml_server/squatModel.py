@@ -11,7 +11,7 @@ class SquatEnsembleModel(BaseModel):
         )
 
     def preprocess_base(self, keypoint_3d):
-        data = super().preprocess_base(keypoint_3d, 0.1)
+        data = super().preprocess_base(keypoint_3d)
         if data is None:
             return None
 
