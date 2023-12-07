@@ -16,12 +16,12 @@ class SocketService:
         while True:
             data = await websocket.receive_text()
             data = json.loads(data)
-            curr_cnt = pushup_count_machine.count(data)
-            print(curr_cnt)
+            response = pushup_count_machine.count(data)
+            print(response)
             curr_time = time.time()
             if curr_time - last_time >= 0.5:
                 last_time = curr_time
-                await websocket.send_text(str(curr_cnt))
+                await websocket.send_json(response)
 
     async def count_squat(self, websocket: WebSocket):
         squat_count_machine = SquatCountMachine()
@@ -32,9 +32,9 @@ class SocketService:
         while True:
             data = await websocket.receive_text()
             data = json.loads(data)
-            curr_cnt = squat_count_machine.count(data)
-            print(curr_cnt)
+            response = squat_count_machine.count(data)
+            print(response)
             curr_time = time.time()
             if curr_time - last_time >= 0.5:
                 last_time = curr_time
-                await websocket.send_text(str(curr_cnt))
+                await websocket.send_json(response)
