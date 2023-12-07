@@ -22,7 +22,7 @@ class BaseModel:
         return self.model.predict(preprocessed_data)
 
     def preprocess_base(self, keypoint_3d):
-        score_threshold = 0.65
+        score_threshold = 0.55
         if self.scaler is None:
             raise ValueError("Scaler not loaded.")
         data = np.array(

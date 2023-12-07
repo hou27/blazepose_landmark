@@ -15,8 +15,6 @@ class PushupEnsembleModel(BaseModel):
         if data is None:
             return None
 
-        print(data)
-
         # 엉덩이를 기준으로 좌표 재설정
         hip_coords = data[23]
         for i in range(data.shape[0]):
